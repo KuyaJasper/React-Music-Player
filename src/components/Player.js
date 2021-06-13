@@ -6,15 +6,25 @@ import {
   faAngleRight,
 } from "@fortawesome/free-solid-svg-icons";
 
-const Player = ({currentSong}) => {
+const Player = ({currentSong, isPlaying, setIsPlaying}) => {
 //Ref (this is used to connect the HTML element like a querySelector from JavaScrip)
 const audioRef =useRef(null)
 
 
 //Event Handlers
 const playSongHandler = () =>{
-  console.log(audioRef.current);
-}
+  // console.log(audioRef.current); <=== best practice to see if useRef is working as intended
+
+  if(isPlaying){
+     // .pause/ .play  method is built into the audio tag.
+     // setIsPlaying(!isPlaying) is a true/false function using the states passed down as props
+      audioRef.current.pause();
+      setIsPlaying(!isPlaying);
+  }else{
+    audioRef.current.play();
+    setIsPlaying(!isPlaying);
+  }
+};
 
   return (
     <div className="player">

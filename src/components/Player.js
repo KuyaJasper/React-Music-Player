@@ -7,9 +7,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const Player = ({currentSong, isPlaying, setIsPlaying}) => {
-//Ref (this is used to connect the HTML element like a querySelector from JavaScrip)
+//Ref <======== (this is used to connect the HTML element like a querySelector from JavaScrip)
 const audioRef =useRef(null)
-
 
 //Event Handlers
 const playSongHandler = () =>{
@@ -30,7 +29,14 @@ const timeHandler = (event) =>{
 const current = event.target.currentTime;
 const duration = event.target.duration;
 setSongInfo({...songInfo, currentTime: current, duration});
-}
+};
+
+const getTime= (time) => {
+  return(
+    //formats time into seconds and minutes
+    Math.floor(time / 60) + ":" + ("0" + Math.floor(time%60)).slice(-2)
+  );
+};
 
 //State
 const [songInfo,setSongInfo] = useState({
@@ -41,9 +47,9 @@ const [songInfo,setSongInfo] = useState({
   return (
     <div className="player">
       <div className="time-control">
-        <p>Start Time</p>
+        <p>{getTime(songInfo.currentTime)}</p>
         <input type="range" />
-        <p>End Time</p>
+        <p>{getTime(songInfo.duration)}</p>
       </div>
       <div className="play-control">
         <FontAwesomeIcon className="skip-back" icon={faAngleLeft} size="2x" />
@@ -54,9 +60,8 @@ const [songInfo,setSongInfo] = useState({
           size="2x"
         />
       </div>
-      <audio 
-      //onTimeupdate is uniqure to audio like onCLick
-      onTimeUpdate={timeHandler} ref={audioRef} src={currentSong.audio}></audio>
+      {/* onTimeupdate is uniqure to audio like onCLick */}
+      <audio onTimeUpdate={timeHandler} onLoadedMetadata={timeHandler} ref={audioRef} src={currentSong.audio}></audio>
     </div>
   );
 };

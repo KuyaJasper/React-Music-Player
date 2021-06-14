@@ -42,6 +42,7 @@ function App() {
         setCurrentSong={setCurrentSong}
         audioRef={audioRef}
         isPlaying={isPlaying}
+        setSongs={setSongs}
       />
       <audio
         //onTimeUpdate and onLoadedMetadata are unique to audio tags, can be used like onClick method

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlay,
@@ -6,6 +6,7 @@ import {
   faAngleRight,
   faPause,
 } from "@fortawesome/free-solid-svg-icons";
+import { playAudio } from "../util";
 
 const Player = ({
   currentSong,
@@ -16,7 +17,30 @@ const Player = ({
   songInfo,
   songs,
   setCurrentSong,
+  setSongs,
 }) => {
+
+//useEffect
+
+useEffect(() => {
+        //Add Active State
+
+        const newSongs = songs.map((song)=> {
+          if(song.id=== currentSong.id){
+              return{
+                  ...song,
+                  active: true,
+              };}
+              else{
+                  return{
+                      ...song,
+                      active: false,
+                  };
+              }
+      });
+      setSongs(newSongs);
+})
+
   //Event Handlers
   const playSongHandler = () => {
     // console.log(audioRef.current); <=== best practice to see if useRef is working as intended
@@ -53,10 +77,12 @@ const Player = ({
     if(direction === 'skip-back'){
       if((currentIndex-1) % songs.length === -1){
         setCurrentSong(songs[songs.length -1]);
+        playAudio(isPlaying,audioRef);
         return;
       }
       setCurrentSong(songs[(currentIndex - 1) % songs.length]);
     }
+    playAudio(isPlaying,audioRef);
   };
 
   return (

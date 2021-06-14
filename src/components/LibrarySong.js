@@ -1,47 +1,50 @@
-import React from 'react';
+import React from "react";
+import { playAudio } from "../util";
 
-const LibrarySong = ({song, setCurrentSong, audioRef, isPlaying, songs , id, setSongs }) => {
+const LibrarySong = ({
+  song,
+  setCurrentSong,
+  audioRef,
+  isPlaying,
+  songs,
+  id,
+  setSongs,
+}) => {
+  const songSelectHandler = () => {
+    setCurrentSong(song);
 
-    const songSelectHandler = () => {
-        setCurrentSong(song);
+    //Add Active State
 
-        //Add Active State
+    const newSongs = songs.map((song) => {
+      if (song.id === id) {
+        return {
+          ...song,
+          active: true,
+        };
+      } else {
+        return {
+          ...song,
+          active: false,
+        };
+      }
+    });
+    setSongs(newSongs);
+    //checks if the song is playing
+    playAudio(isPlaying,audioRef);
+  };
 
-        const newSongs = songs.map((song)=> {
-            if(song.id===id){
-                return{
-                    ...song,
-                    active: true,
-                };}
-                else{
-                    return{
-                        ...song,
-                        active: false,
-                    };
-                }
-        });
-        setSongs(newSongs);
-
-        //checks if the song is playing
-        if(isPlaying){
-            const playPromise = audioRef.current.play();
-            if(playPromise !== undefined){
-                playPromise.then((audio) => {
-                    audioRef.current.play();
-                });
-            }
-        }
-    }
-
-    return (
-        <div onClick={songSelectHandler} className={`library-song ${song.active ? "selected" : "" }`}>
-        <img alt ={song.name} src={song.cover}></img>
-        <div className="song-desctiption">
+  return (
+    <div
+      onClick={songSelectHandler}
+      className={`library-song ${song.active ? "selected" : ""}`}
+    >
+      <img alt={song.name} src={song.cover}></img>
+      <div className="song-desctiption">
         <h3>{song.name}</h3>
         <h4>{song.artist}</h4>
-        </div>
-        </div>
-    )
+      </div>
+    </div>
+  );
 };
 
 export default LibrarySong;

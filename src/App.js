@@ -4,7 +4,7 @@ import Song from "./components/Song";
 import Library from "./components/Library";
 import Nav from './components/Nav';
 import "./styles/app.scss";
-import data from "./util";
+import data from "./data";
 
 function App() {
   //Ref <======== (this is used to connect the HTML element like a querySelector from JavaScrip)
@@ -41,6 +41,7 @@ function App() {
         songInfo={songInfo}
         songs={songs}
         setCurrentSong={setCurrentSong}
+        setSongs={setSongs}
       />
       <Library
         songs={songs}

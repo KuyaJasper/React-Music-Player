@@ -5,16 +5,6 @@ import { v4 as uuidv4 } from "uuid";
 function chillHop() {
   return [
     {
-      name: "Higher",
-      artist: "Misha, Jussi Halme",
-      cover:
-        "https://chillhop.com/wp-content/uploads/2021/05/2473c60e471fe9b40e246bf7711c87d3d6ea69a7.jpg",
-      id: uuidv4(),
-      active: true,
-      color: ["#E87274", "#2D385A"],
-      audio: "https://mp3.chillhop.com/serve.php/?mp3=15088",
-    },
-    {
       name: "Cruisin",
       artist: "Cloudchord, G Mills",
       cover: "https://chillhop.com/wp-content/uploads/2020/07/8404541e3b694d16fd79433b142ed910f36764dd.jpg",
@@ -33,6 +23,16 @@ function chillHop() {
       audio: "https://mp3.chillhop.com/serve.php/?mp3=10076",
     },
     {
+      name: "Higher",
+      artist: "Misha, Jussi Halme",
+      cover:
+        "https://chillhop.com/wp-content/uploads/2021/05/2473c60e471fe9b40e246bf7711c87d3d6ea69a7.jpg",
+      id: uuidv4(),
+      active: true,
+      color: ["#E87274", "#2D385A"],
+      audio: "https://mp3.chillhop.com/serve.php/?mp3=15088",
+    },
+    {
       name: "Arcade",
       artist: "Yasper",
       cover: "https://chillhop.com/wp-content/uploads/2020/07/cd050898ca06fdfdb7fcf2313304d952c6dd8e41.jpg",
@@ -40,6 +40,15 @@ function chillHop() {
       active: false,
       color: ["#8554B5","#D88D6E"],
       audio: "https://mp3.chillhop.com/serve.php/?mp3=7987",
+    },
+    {
+      name: "Going Back",
+      artist: "Swørn",
+      cover: "https://chillhop.com/wp-content/uploads/2020/10/737bb830d34592344eb4a2a1d2c006cdbfc811d9.jpg",
+      id: uuidv4(),
+      active: false,
+      color: ["##26444C","#29375E"],
+      audio: "https://mp3.chillhop.com/serve.php/?mp3=10310",
     },
     {
       name: "Waterfalls",

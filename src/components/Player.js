@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlay,
@@ -7,9 +7,8 @@ import {
   faPause,
 } from "@fortawesome/free-solid-svg-icons";
 
-const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
-  //Ref <======== (this is used to connect the HTML element like a querySelector from JavaScrip)
-  const audioRef = useRef(null);
+const Player = ({ currentSong, isPlaying, setIsPlaying, audioRef, setSongInfo, songInfo }) => {
+
 
   //Event Handlers
   const playSongHandler = () => {
@@ -26,12 +25,6 @@ const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
     }
   };
 
-  const timeHandler = (event) => {
-    const current = event.target.currentTime;
-    const duration = event.target.duration;
-    setSongInfo({ ...songInfo, currentTime: current, duration });
-  };
-
   const getTime = (time) => {
     return (
       //formats time into seconds and minutes
@@ -45,11 +38,6 @@ const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
     setSongInfo({ ...songInfo, currentTime: event.target.value });
   };
 
-  //State
-  const [songInfo, setSongInfo] = useState({
-    currentTime: 0,
-    duration: 0,
-  });
 
   return (
     <div className="player">
@@ -79,13 +67,6 @@ const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
           size="2x"
         />
       </div>
-      <audio
-      //onTimeUpdate and onLoadedMetadata are unique to audio tags, can be used like onClick method
-        onTimeUpdate={timeHandler}
-        onLoadedMetadata={timeHandler}
-        ref={audioRef}
-        src={currentSong.audio}
-      ></audio>
     </div>
   );
 };

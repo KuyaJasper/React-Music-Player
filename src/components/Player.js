@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlay,
@@ -9,7 +9,6 @@ import {
 import { playAudio } from "../util";
 
 const Player = ({
-  currentSong,
   isPlaying,
   setIsPlaying,
   audioRef,
@@ -18,28 +17,15 @@ const Player = ({
   songs,
   setCurrentSong,
   setSongs,
+  currentSong,
 }) => {
 
 //useEffect
 
 useEffect(() => {
         //Add Active State
-
-        const newSongs = songs.map((song)=> {
-          if(song.id=== currentSong.id){
-              return{
-                  ...song,
-                  active: true,
-              };}
-              else{
-                  return{
-                      ...song,
-                      active: false,
-                  };
-              }
-      });
-      setSongs(newSongs);
-})
+      audioRef.current[isPlaying ? "play" : "pause"]();
+},[isPlaying,currentSong,audioRef])
 
   //Event Handlers
   const playSongHandler = () => {
@@ -85,6 +71,7 @@ useEffect(() => {
     audioRef.current.currentTime = setTime;
     setSongInfo({ ...songInfo, currentTime: setTime});
   };
+
 
   const skipTrackHandler = (direction) => {
     let currentIndex= songs.findIndex((song)=> song.id === currentSong.id);

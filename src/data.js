@@ -9,7 +9,7 @@ function chillHop() {
       artist: "Cloudchord, G Mills",
       cover: "https://chillhop.com/wp-content/uploads/2020/07/8404541e3b694d16fd79433b142ed910f36764dd.jpg",
       id: uuidv4(),
-      active: false,
+      active: true,
       color: ["#FFB1A7","#FF184B"],
       audio: "https://mp3.chillhop.com/serve.php/?mp3=8200",
     },

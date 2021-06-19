@@ -29,12 +29,12 @@ function App() {
     //Calculates Percentage
     const roundedCurrent = Math.round(current);
     const roundedDuration = Math.round(duration);
-    const animation = Math.round((roundedCurrent / roundedDuration) *100);
+    const percentage = Math.round((roundedCurrent / roundedDuration) *100);
     setSongInfo({
       ...songInfo,
       currentTime: current,
       duration: duration,
-      animationPercentage: animation,
+      animationPercentage: percentage,
     });
   };
 

@@ -1,3 +1,6 @@
+//This file was written by my brother when we had the input for the slider set to "onClick" instead of "onChange"
+
+
 const dragHandler = (event) => {
     //onClick is an input method that tracks where the mouse clicks within the div
     //getElementsByClassName returns an array of element objects
